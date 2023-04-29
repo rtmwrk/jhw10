@@ -38,18 +38,16 @@ public class FilmManager {
 
     // Метод вывода заданного кол-ва последних фильмов афиши
     public FilmItem[] findLast() {
-        if (countLast <= films.length) {                    // проверяем, чтобы кол-во "последних" фильмов
-            FilmItem[] tmp = new FilmItem[countLast];       // не привышало длину существующей афиши
-            for (int i = 0; i < countLast; i++) {           // во временный массив переписываем последние
-                tmp[i] = films[films.length - 1 - i];       // countLast фильмов
-            }
-            return tmp;                                     // возвращаем последние countLast фильмов афиши
-        } else {                                            // если кол-во "последних" фильмов меньше countLast
-            FilmItem[] tmp = new FilmItem[films.length];
-            for (int i = 0; i < films.length; i++) {        // выводим всю существующую афишу в обратном порядке
-                tmp[i] = films[films.length - 1 - i];
-            }
-            return tmp;                                     // возвращаем последние countLast фильмов афиши
+        int ourLength;
+        if (countLast <= films.length)  {
+            ourLength = countLast;
+        } else {
+            ourLength = films.length;
         }
+        FilmItem[] tmp = new FilmItem[ourLength];
+        for (int i = 0; i < ourLength; i++) {
+            tmp[i] = films[films.length - 1 - i];
+        }
+        return tmp;
     }
 }
