@@ -186,15 +186,31 @@ public class FilmManagerTest {
     }
 
     // Тест метода на добавление объекта - фильма в афишу
-    // В данном случае достаточно проверить сам факт добавления в наш массив - "афишу" нового объекта
-    // требуемой структуры
+    // В данном случае достаточно проверить факт добавления в наш массив - "афишу" нового объекта
+    // требуемой структуры - 2, 1 и 0 объектов покроем методиками "эквивалентных" и "граничных значений"
     @Test
-    public void testAddFilm() {
+    public void testAddTwoFilms() {
         FilmManager films = new FilmManager();
         films.add(item2);
         films.add(item4);
 
         FilmItem[] expected = {item2,item4};
+        FilmItem[] actual = films.findAll();
+        Assertions.assertArrayEquals(expected, actual);
+    }
+    @Test
+    public void testAddOneFilm() {
+        FilmManager films = new FilmManager();
+        films.add(item2);
+
+        FilmItem[] expected = {item2};
+        FilmItem[] actual = films.findAll();
+        Assertions.assertArrayEquals(expected, actual);
+    }
+    @Test
+    public void testAddZeroFilms() {
+        FilmManager films = new FilmManager();
+        FilmItem[] expected = {};
         FilmItem[] actual = films.findAll();
         Assertions.assertArrayEquals(expected, actual);
     }
